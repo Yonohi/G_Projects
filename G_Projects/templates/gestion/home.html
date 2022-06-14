@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Bonjour{{ user.username }}!</h1>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% for project in projects %}
+  <div class="bloc_project">
+    <p>{{project.chef_projet}}</p>
+    <p>{{project.nb_jour_realise}}</p>
+    <p>{{project.nb_jour_total}}</p>
+  </div>
+  
+{% endfor %}
+{% endblock %}
