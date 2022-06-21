@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if  project.en_cours%}
+<h2>Projet En Cours</h2>
+{% else %}
+<h2>Projet Fini</h2>
+{% endif %}
+<p>Chef de projet : {{project.chef_projet}} 
+    <br>Client : {{project.client}}
+    <br>Code Campagne : {{project.code_campagne}}
+    <br>Code Kammi : {{project.code_kammi}}
+    <br>Nombre de jour : {{project.nb_jour_total}}
+    <br>Nombre de jour(s) réalisé(s) : {{project.nb_jour_realise}}
+    <br>Montant : {{project.prix}} €
+    <br>Date de début : {{project.date_debut}}
+    <br>Date de fin : {{project.date_fin}}
+    <br>Liste des Téléacteurs : 
+    <ul>
+    {% for teleacteur in project.teleacteurs.all %}
+        <li>{{teleacteur}}</li>
+    {% empty %} 
+        <li>Pas de téléacteurs pour le moment sur le projet</li>
+    {% endfor %}
+    </ul>
+</p>
+{% endblock  %}

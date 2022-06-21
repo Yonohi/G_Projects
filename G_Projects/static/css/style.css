@@ -1,0 +1,90 @@
+/*========= Google fonts =========*/
+
+/*========= Variables CSS =========*/
+
+:root {
+    /* Color */
+    --backgr-color: black;
+
+    /* Font size */
+    --text-size: 1em;
+
+    /* Size of elements */
+}
+
+/*========= Comportement de base =========*/
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+/*========= Navbar =========*/
+/*========= Corps =========*/
+
+.big_title {
+    text-align: center;
+}
+
+.en_tete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin: 0;
+    background-color: dodgerblue;
+}
+
+.bonjour {
+    font-size: 1.4em;
+}
+
+.projets_conteneur {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.bloc_projet {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloc_barre_av {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.barre_av {
+    width: 30vw;
+    height: 20px;
+    background-color: blue;
+    margin: 10px 20px;
+}
+
+.barre_in {
+    position: relative;
+    left: 0;
+    height: 100%;
+    background-color: red;
+    z-index: 1;
+    margin: 0;
+    max-width: 100%;
+}
+
+.bloc_barre_av p {
+    margin: 0;
+}
+
+.form_client {
+    display: none;
+}
+
+.titre_chef {
+    margin-left: 30px;
+}

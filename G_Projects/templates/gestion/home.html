@@ -1,21 +1,61 @@
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
 {% block content %}
+<!-- Double sécurité pour le login (le if suivant et le décorateur de la vue) -->
 {% if user.is_authenticated %}
-  <h1>Bonjour{{ user.username }}!</h1>
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+<!-- En-tête -->
+  <div class="en_tete">
+    <h1 class="bonjour">Bonjour {{ user.username }}!</h1>
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  </div>
+<!-- section nouveau projet -->
+<a href="{% url 'gestion:new' %}" class="ajout_proj">Ajouter un nouveau projet</a>
+
+<!-- Projets en cours -->
+  <section class="projets_conteneur">
+    <h2 class="titre_conteneur">Projets en cours</h2>
+    {% for chef in chefs_en_cours %}
+    <h3 class="titre_chef">{{chef}}</h3>
+      {% for projet in projets_en_cours %}
+        {% if projet.chef_projet == chef %}
+          <!-- bloc projet -->
+          <div class="bloc_projet">
+            <p>{{projet.client|upper}}</p>
+            <p>{{projet.code_campagne}}</p>
+            <div class="bloc_barre_av">
+              <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
+              <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+            </div>
+            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+          </div>  
+        {% endif %} 
+      {% endfor %}
+    {% endfor %}
+  </section>
+
+<!-- Projets finis -->
+  <section class="projets_conteneur">
+    <h2 class="titre_conteneur">Projets finis</h2>
+    {% for chef in chefs_finis %}
+    <h3 class="titre_chef">{{chef}}</h3>
+      {% for projet in projets_finis %}
+        {% if projet.chef_projet == chef %}
+          <!-- bloc projet -->
+          <div class="bloc_projet">
+            <p>{{projet.client|upper}}</p>
+            <p>{{projet.code_campagne}}</p>
+            <div class="bloc_barre_av">
+              <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
+              <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+            </div>
+            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+          </div>  
+        {% endif %} 
+      {% endfor %}
+    {% endfor %}
+  </section>
+
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
 {% endif %}
-{% for project in projects %}
-  <div class="bloc_project">
-    <p>{{project.chef_projet}}</p>
-    <p>{{project.nb_jour_realise}}</p>
-    <p>{{project.nb_jour_total}}</p>
-  </div>
-  
-{% endfor %}
 {% endblock %}

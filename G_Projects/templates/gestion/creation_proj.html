@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <a href="#" class="new_client">+ Nouveau Client</a>
+    <form method="POST" class="form_client">
+        <h2>Nouveau Client</h2>
+        {% csrf_token %}
+        {{ client_form.as_p }}
+        <button type="submit">
+            Sauvegarder
+        </button>
+    </form>
+    <form method="POST">
+        <h2>Nouveau Projet</h2>
+        {% csrf_token %}
+        {{ projet_form.as_p }}
+        <button type="submit">
+            Sauvegarder
+        </button>
+    </form>
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock  %}
