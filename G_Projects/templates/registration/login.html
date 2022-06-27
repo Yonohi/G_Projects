@@ -1,12 +1,25 @@
-{% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    <title>G_Projects</title>
+</head>
+<body>
+    <h1 class="big_title">G_Projects</h1>
+<!--remarque content est le nom du block on peut ainsi mettre plusieurs block avec des noms différents-->
 
-{% block content %}
 <h2>Log In</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Log In</button>
 </form>
-{% endblock %}
+
+
+</body>
+</html>

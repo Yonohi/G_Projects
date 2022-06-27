@@ -1,26 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
+<h2 class="title_project">{{projet.client|upper}} {{projet.code_campagne}} </h2>
+
+<!-- barre d'avancement -->
+<div class="bloc_barre_av">
+    <figure class="barre_av_detail"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
+    <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+</div>
+
+<!-- Corps -->
 {% if  project.en_cours%}
 <h2>Projet En Cours</h2>
 {% else %}
 <h2>Projet Fini</h2>
 {% endif %}
-<p>Chef de projet : {{project.chef_projet}} 
-    <br>Client : {{project.client}}
-    <br>Code Campagne : {{project.code_campagne}}
-    <br>Code Kammi : {{project.code_kammi}}
-    <br>Nombre de jour : {{project.nb_jour_total}}
-    <br>Nombre de jour(s) réalisé(s) : {{project.nb_jour_realise}}
-    <br>Montant : {{project.prix}} €
-    <br>Date de début : {{project.date_debut}}
-    <br>Date de fin : {{project.date_fin}}
-    <br>Liste des Téléacteurs : 
-    <ul>
-    {% for teleacteur in project.teleacteurs.all %}
-        <li>{{teleacteur}}</li>
-    {% empty %} 
-        <li>Pas de téléacteurs pour le moment sur le projet</li>
-    {% endfor %}
-    </ul>
-</p>
+
+<!-- Bloc info -->
+<div class="bloc_info">
+    <h2>Informations</h2>
+    <p>Chef de projet : {{projet.chef_projet}} 
+        <br>Client : {{projet.client}}
+        <br>Code Campagne : {{projet.code_campagne}}
+        <br>Code Kammi : {{projet.code_kammi}}
+        <br>Nombre de jour : {{projet.nb_jour_total}}
+        <br>Nombre de jour(s) réalisé(s) : {{projet.nb_jour_realise}}
+        <br>Montant : {{projet.prix}} €
+        <br>Date de début : {{projet.date_debut}}
+        <br>Date de fin : {{projet.date_fin}}
+        <br>Liste des Téléacteurs : 
+        <ul>
+        {% for teleacteur in projet.teleacteurs.all %}
+            <li>{{teleacteur}}</li>
+        {% empty %} 
+            <li>Pas de téléacteurs pour le moment sur le projet</li>
+        {% endfor %}
+        </ul>
+    </p>    
+</div>
+
+
+<!-- Bloc To Do -->
+<div class="bloc_to_do">
+   <h2>To Do List</h2> 
+   <p>Proposition : {{to_do.proposition}} 
+    <br>Commande : {{to_do.commande}}
+    <br>Brief de démarrage : {{to_do.brief_demarrage}}
+    <br>Compte-rendu du brief : {{to_do.cr_brief}}
+    <br>Script : {{to_do.script}}
+    <br>Fichier : {{to_do.fichier}}
+    <br>Reporting intermédiaire : {{to_do.rep_int}}
+    <br>Reporting final : {{to_do.rep_final}}
+    <br>Facture : {{to_do.facture}}
+    <br>Règlement : {{to_do.reglement}}
+    <br>Commentaires: {{to_do.commentaire}}
+    </p>
+</div>
+
+<!-- Bloc Résultats -->
+<div class="bloc_results">
+    <h2>Résultats</h2> 
+    <p>LEADS : {{projet.opportunite.lead}}
+     <br>NURSERING : {{projet.opportunite.nursering}}
+     <br>FICHES INFO : {{projet.opportunite.fiche_info}}
+     <br>Commentaires : {{projet.opportunite.commentaire}}
+     </p>
+ </div>
 {% endblock  %}

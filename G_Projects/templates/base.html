@@ -9,8 +9,25 @@
     <title>G_Projects</title>
 </head>
 <body>
-    <h1 class="big_title">G_Projects</h1>
 <!--remarque content est le nom du block on peut ainsi mettre plusieurs block avec des noms différents-->
+{% if user.is_authenticated %}
+<!-- En-tête -->
+  <div class="en_tete">
+    <h1 class="big_title">G_Projects</h1>
+    <nav class="nav_container">
+      <div class="nav_item"><a href="{% url 'gestion:home' %}">Accueil</a></div>
+      <div class="nav_item"><a href="{% url 'recherche:home_recherche' %}">Recherche</a></div>
+      <div class="nav_item"><a href="{% url 'gestion:teleacteurs' %}">Téléacteurs</a></div>
+      <div class="nav_item"><a href="{% url 'gestion:en_cours' %}">En cours</a></div>
+      <div class="nav_item"><a href="{% url 'gestion:finis' %}">Finis</a></div>
+      <div class="nav_item"><a href="{% url 'logout' %}">Se déconnecter</a></div> 
+    </nav>
+  </div>
+
     {% block content %}{% endblock  %}
+{% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+{% endif %}
 </body>
 </html>

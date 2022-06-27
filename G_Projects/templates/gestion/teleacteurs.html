@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Projets en cours -->
+  <section class="tele_conteneur">
+    <h1 class="titre_tele">Téléacteurs</h2>
+    {% for tele in teleacteurs %}
+    <h2>{{tele}}</h2>        
+    <h3>En Cours</h3>
+    <ul>
+    {% for projet in tele.projets.all %}
+        {% if projet.en_cours %}
+            <!-- Projets en cours du teleacteur -->
+            <li>{{projet}}</li>
+        {% endif %}
+    {% endfor %}
+    </ul> 
+    <h3>Finis</h3>
+    <ul>
+    {% for projet in tele.project_set.all %}
+        {% if not projet.en_cours %}
+            <!-- Projets en cours du teleacteur -->
+            <li>{{projet}}</li>
+        {% endif %}
+    {% endfor %}
+    </ul> 
+    {% endfor %}
+  </section>
+{% endblock %}

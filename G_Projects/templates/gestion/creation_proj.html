@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <a href="#" class="new_client">+ Nouveau Client</a>
-    <form method="POST" class="form_client">
-        <h2>Nouveau Client</h2>
+    <a href="#" class="new_fournisseur">+ Nouveau Fournisseur</a>
+    <form method="POST" class="form_fournisseur">
+        <h2>Nouveau Fournisseur</h2>
         {% csrf_token %}
-        {{ client_form.as_p }}
+        {{ four_form.as_p }}
+        <button type="submit">
+            Sauvegarder
+        </button>
+    </form>
+    <a href="#" class="new_grossiste">+ Nouveau Grossiste</a>
+    <form method="POST" class="form_grossiste">
+        <h2>Nouveau Grossiste</h2>
+        {% csrf_token %}
+        {{ gross_form.as_p }}
+        <button type="submit">
+            Sauvegarder
+        </button>
+    </form>
+    <a href="#" class="new_partenaire">+ Nouveau Partenaire</a>
+    <form method="POST" class="form_partenaire">
+        <h2>Nouveau Partenaire</h2>
+        {% csrf_token %}
+        {{ part_form.as_p }}
         <button type="submit">
             Sauvegarder
         </button>

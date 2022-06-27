@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- section nouveau projet -->
+<a href="{% url 'gestion:new' %}" class="ajout_proj">Ajouter un nouveau projet</a>
+
+<!-- Projets finis -->
+  <section class="projets_conteneur">
+    <h2 class="titre_conteneur">Projets finis</h2>
+    {% for chef in chefs_finis %}
+    <h3 class="titre_chef">{{chef}}</h3>
+      {% for projet in projets_finis %}
+        {% if projet.chef_projet == chef %}
+          <!-- bloc projet -->
+          <div class="bloc_projet">
+            <p>{{projet.client_principal|upper}}</p>
+            <p>{{projet.code_campagne}}</p>
+            <div class="bloc_barre_av">
+              <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
+              <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+            </div>
+            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+          </div>  
+        {% endif %} 
+      {% endfor %}
+    {% endfor %}
+  </section>
+{% endblock %}
