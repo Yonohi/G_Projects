@@ -8,6 +8,19 @@ from django.core.exceptions import ValidationError
 
 @login_required
 def home_view(request):
+    if request.method == "POST":
+        if 'projet_fini' in request.POST:
+            projet_id = request.POST.get('projet_fini')
+            projet = Project.objects.get(id=projet_id)
+            projet.en_cours = False
+            projet.save()
+            return redirect('gestion:home')
+        elif 'projet_reprise' in request.POST:
+            projet_id = request.POST.get('projet_reprise')
+            projet = Project.objects.get(id=projet_id)
+            projet.en_cours = True
+            projet.save()
+            return redirect('gestion:home')
     user = get_user(request)
     projets_en_cours = Project.objects.filter(en_cours=True, chef_projet=user)
     projets_finis = Project.objects.filter(en_cours=False, chef_projet=user)
@@ -18,6 +31,13 @@ def home_view(request):
 
 @login_required
 def en_cours_view(request):
+    if request.method == "POST":
+        if 'projet_fini' in request.POST:
+            projet_id = request.POST.get('projet_fini')
+            projet = Project.objects.get(id=projet_id)
+            projet.en_cours = False
+            projet.save()
+            return redirect('gestion:en_cours')
     users = set(User.objects.all())
     projets_en_cours = Project.objects.filter(en_cours=True)
     chefs_en_cours = set([projet.chef_projet for projet in projets_en_cours])
@@ -29,6 +49,13 @@ def en_cours_view(request):
 
 @login_required
 def finis_view(request):
+    if request.method == "POST":
+        if 'projet_reprise' in request.POST:
+            projet_id = request.POST.get('projet_reprise')
+            projet = Project.objects.get(id=projet_id)
+            projet.en_cours = True
+            projet.save()
+            return redirect('gestion:finis')
     users = set(User.objects.all())
     projets_finis = Project.objects.filter(en_cours=False)
     chefs_finis = set([projet.chef_projet for projet in projets_finis])

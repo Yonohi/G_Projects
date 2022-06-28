@@ -58,7 +58,14 @@ class Project(models.Model):
     objectif = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(0)])
 
     def __str__(self):
-        return f"Projet {self.client_principal} {self.code_campagne}"
+        if self.client_principal == 'F':
+            return f"{self.fournisseur} {self.code_campagne}".upper()
+        elif self.client_principal == 'G':
+            return f"{self.grossiste} {self.code_campagne}".upper()
+        elif self.client_principal == 'P':
+            return f"{self.partenaire} {self.code_campagne}".upper()
+        else:
+            return 'Erreur sur le projet'
 
 
 class ToDo(models.Model):

@@ -16,8 +16,10 @@
     </ul> 
     <h3>Finis</h3>
     <ul>
-    {% for projet in tele.project_set.all %}
+    {% for projet in tele.projets.all %}
         {% if not projet.en_cours %}
+
+        <!-- Voir si cette partie est intéressante -->
             <!-- Projets en cours du teleacteur -->
             <li>{{projet}}</li>
         {% endif %}

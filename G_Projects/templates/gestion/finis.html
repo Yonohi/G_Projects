@@ -14,11 +14,14 @@
           <div class="bloc_projet">
             <p>{{projet.client_principal|upper}}</p>
             <p>{{projet.code_campagne}}</p>
-            <div class="bloc_barre_av">
-              <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
-              <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
-            </div>
+            {% include 'gestion/barre_av_mini.html' %}
             <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+            {% if chef == user %}
+            <form class="form-inline" method="post" action="{% url 'gestion:finis' %}">
+              {% csrf_token %}
+              <button role='button' type="submit" name="projet_reprise" value="{{projet.id}}" >Reprendre le projet</button> 
+            </form>
+            {% endif %}
           </div>  
         {% endif %} 
       {% endfor %}

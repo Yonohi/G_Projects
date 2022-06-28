@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <h1 class="bonjour">Bonjour {{ user.username }}!</h1>
 <!-- section nouveau projet -->
 <a href="{% url 'gestion:new' %}" class="ajout_proj">Ajouter un nouveau projet</a>
@@ -12,21 +13,13 @@
         {% if projet.chef_projet == user %}
           <!-- bloc projet -->
           <div class="bloc_projet">
-            <p>{{projet.client_principal|upper}}</p>
-            <p>{{projet.code_campagne}}</p>
-            <div class="bloc_barre_av">
-              <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
-            {% if projet.has_objectif %}            
-              <figure class="barre_av objectif"><figure class="barre_in" style="width: calc({{projet.opportunite.lead}}* 100% / {{projet.objectif}})"></figure></figure>
-            {% endif %}
-            </div>
-            <div>
-            <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
-            {% if projet.has_objectif %}            
-            <p>{{projet.opportunite.lead}}/{{projet.objectif}}</p>
-            {% endif %}
-            </div>
-            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+            <p>{{projet|upper}}</p>
+            {% include 'gestion/barre_av_mini.html' %}
+            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a> 
+            <form class="form-inline" method="post" action="{% url 'gestion:home' %}">
+              {% csrf_token %}
+              <button role='button' type="submit" name="projet_fini" value="{{projet.id}}" >Projet Fini</button> 
+            </form>
           </div>  
         {% endif %} 
       {% endfor %}
@@ -40,17 +33,13 @@
       {% if projet.chef_projet == user %}
         <!-- bloc projet -->
         <div class="bloc_projet">
-          <p>{{projet.client_principal|upper}}</p>
-          <p>{{projet.code_campagne}}</p>
-          <div class="bloc_barre_av">
-            <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
-            <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
-          </div>
-          <div class="bloc_barre_av">
-            <figure class="barre_av"><figure class="barre_in" style="width: calc({{projet.opportunite.lead}}* 100% / {{projet.objectif}})"></figure></figure>
-            <p>{{projet.opportunite.lead}}/{{projet.objectif}}</p>
-          </div>
+          <p>{{projet|upper}}</p>
+          {% include 'gestion/barre_av_mini.html' %}
           <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
+          <form class="form-inline" method="post" action="{% url 'gestion:home' %}">
+            {% csrf_token %}
+            <button role='button' type="submit" name="projet_reprise" value="{{projet.id}}" >Reprendre le projet</button> 
+          </form>
         </div>  
       {% endif %} 
     {% endfor %}
