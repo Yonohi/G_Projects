@@ -281,3 +281,10 @@ nav {
 
 /*========= Recherche =========*/
 
+.search_form {
+    margin: 50px 0;
+}
+
+.help_search {
+    margin-left: 100px;
+} 

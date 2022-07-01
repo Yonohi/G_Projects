@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}    
 <div class="container-fluid">
-    <div class="row justify-content-center align-items-center body_height">
+    <div class="row justify-content-center">
         <form method="POST" class="search_form col-6" action="{% url 'recherche:home_recherche' %}">
             {% csrf_token %}
             <div class="field_form  align-items-center m-0">
@@ -18,5 +18,6 @@
             </div>
         </form>
     </div>
+    <h2>Résultats pour: {{query}}</h2>
   </div> 
 {% endblock  %}
