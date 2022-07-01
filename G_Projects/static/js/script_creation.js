@@ -14,9 +14,9 @@ formPart.style.display = 'none'
 objectif.style.display = 'none'
 
 // Fonction d'affichage ou de fermeture d'un formulaire
-function openClose(elmt) {
+function openClose(elmt, elmtDisplay='block') {
     if (elmt.style.display == 'none') 
-        elmt.style.display = 'block';
+        elmt.style.display = elmtDisplay;
     else 
         elmt.style.display = 'none';
 };
@@ -25,4 +25,4 @@ function openClose(elmt) {
 newFour.addEventListener('click', function() {openClose(formFour)})
 newGross.addEventListener('click', function() {openClose(formGross)})
 newPart.addEventListener('click', function() {openClose(formPart)})
-hasObjectif.addEventListener('click', function() {openClose(objectif)})
+hasObjectif.addEventListener('click', function() {openClose(objectif,elmtDisplay='flex')})

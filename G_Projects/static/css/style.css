@@ -14,11 +14,25 @@
     --backgr-color: ghostwhite;
     --backgr-nav-color: rgba(47,153,232,255);
     --nav-color: white;
+    --barre-av:rgb(140, 196, 251);
+    --barre-in:rgba(47,153,232,255);
+    --barre-in-obj:ghostwhite;
 
     /* Font size */
     --text-size: 1em;
 
     /* Size of elements */
+    --height-nav: 60px;
+}
+
+.btn-my-color {
+    --bs-btn-bg: ghostwhite;
+    --bs-btn-border-color: rgba(47,153,232,1);
+    --bs-btn-border-width: 2px;
+    --bs-btn-color: rgba(47,153,232,1);
+    --bs-btn-hover-bg: rgb(228, 228, 234);
+    --bs-btn-hover-border-color: rgba(47,153,232,255);
+    --bs-btn-hover-color: rgba(47,153,232,1);
 }
 
 /*========= Comportement de base =========*/
@@ -35,6 +49,23 @@ a {
     text-decoration: none;
 }
 
+button {
+    margin: 30px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*========= Log In =========*/
+.login_form, .search_form {
+    min-width: 450px;
+}
+
+.body_height {
+    height: calc(100vh - var(--height-nav));
+}
+
 /*========= En-tete et Navbar =========*/
 .big_title {
     text-align: center;
@@ -48,7 +79,7 @@ a {
     justify-content: space-between;
     padding: 0 50px;
     margin: 0;
-    height: 60px;
+    height: var(--height-nav);
     background-color: var(--backgr-nav-color);
     color: var(--nav-color);
 }
@@ -75,19 +106,32 @@ nav {
 
 .bonjour {
     font-size: 1.4em;
+    margin: 20px 0 0 20px;
+}
+
+.ajout_proj {
+    margin: 20px 0 20px 20px;
 }
 
 .projets_conteneur {
     border: 2px solid black;
     border-radius: 10px;
     padding: 30px;
+    margin: 0 20px 20px 20px;
 }
 
 .bloc_projet {
+    width: 70%;
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.nom_proj {
+    width: 150px;
+    margin: 0;
 }
 
 .bloc_barre_av {
@@ -103,8 +147,8 @@ nav {
 }
 .barre_av {
     width: 100%;
-    height: 20px;
-    background-color: rgb(113, 114, 116);
+    height: 15px;
+    background-color: var(--barre-av);
     margin: 0;
 }
 
@@ -117,7 +161,7 @@ nav {
     position: relative;
     left: 0;
     height: 100%;
-    background-color: rgba(47,153,232,255);
+    background-color: var(--barre-in);
     z-index: 1;
     margin: 0;
     max-width: 100%;
@@ -125,8 +169,9 @@ nav {
     border-radius: 0 20px  20px 0;
 }
 .objectif .barre_in{
-    background-color: ghostwhite;
+    background-color: var(--barre-in-obj);
 }
+
 
 .title_project {
     text-align: center;
@@ -149,14 +194,19 @@ nav {
     margin: 0;
 }
 
-.titre_chef {
-    margin-left: 30px;
+.ratio {
+    font-size: 0.8rem;
+    margin: 0;
+    width: 50px;
 }
 
-.section_creation {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+.btn-size {
+    width: 100px;
+}
+
+.titre_chef {
+    margin-left: 8vw;
+    font-size: 1.5rem;
 }
 
 .objectif_form {
@@ -165,6 +215,29 @@ nav {
 
 .new_form {
     margin-left: 100px;
+}
+
+.field_form {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+}
+.field_label {
+    width: 150px;
+}
+
+.field_form + a {
+    margin-left: 150px;
+    color: var(--backgr-nav-color);
+}
+
+.field_content {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.title_creation {
+    margin: 50px 0 20px 0;
 }
 
 /*========= Page de détail des projets =========*/
@@ -187,3 +260,24 @@ nav {
 .bloc_resultats {
     width: 40%;
 }
+
+/*========= Téléacteurs =========*/
+.tele_section {
+    display: flex;
+    flex-direction: row;
+}
+
+.tele_container {
+    margin: 20px;
+}
+
+.tele_content {
+    margin-left: 30px;
+}
+
+.tele_project {
+    font-size: 1rem;
+}
+
+/*========= Recherche =========*/
+

@@ -5,8 +5,8 @@
     {% endif %}
 </div>
 <div>
-    <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+    <p class="ratio">{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
     {% if projet.has_objectif %}            
-    <p>{{projet.opportunite.lead}}/{{projet.objectif}}</p>
+    <p class="ratio">{{projet.opportunite.lead}}/{{projet.objectif}}</p>
     {% endif %}
 </div>

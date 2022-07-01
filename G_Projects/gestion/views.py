@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user
-from .models import Project, ToDo, Fournisseur, Grossiste, Partenaire, Teleacteur, Opportunite
+from .models import Project, ToDo, Teleacteur, Opportunite
 from .forms import ProjectForm, FournisseurForm, GrossisteForm, PartenaireForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError

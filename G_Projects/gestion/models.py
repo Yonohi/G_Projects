@@ -38,7 +38,7 @@ class Partenaire(models.Model):
 
 
 class Project(models.Model):
-    en_cours = models.BooleanField()
+    en_cours = models.BooleanField(default=True)
     fournisseur = models.ForeignKey(to=Fournisseur,on_delete=models.SET_NULL, null=True, related_name='projets', blank=True)
     grossiste = models.ForeignKey(to=Grossiste, on_delete=models.SET_NULL, null=True, related_name='projets', blank=True)
     partenaire = models.ForeignKey(to=Partenaire, on_delete=models.SET_NULL, null=True, related_name='projets', blank=True)

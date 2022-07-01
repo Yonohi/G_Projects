@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" >
     <title>G_Projects</title>
 </head>
 <body>
 <!--remarque content est le nom du block on peut ainsi mettre plusieurs block avec des noms différents-->
-{% if user.is_authenticated %}
+
 <!-- En-tête -->
   <div class="en_tete">
     <h1 class="big_title">G_Projects</h1>
+    {% if user.is_authenticated %}
     <nav class="nav_container">
       <div class="nav_item"><a href="{% url 'gestion:home' %}">Accueil</a></div>
       <div class="nav_item"><a href="{% url 'recherche:home_recherche' %}">Recherche</a></div>
@@ -23,10 +25,11 @@
       <div class="nav_item"><a href="{% url 'gestion:finis' %}">Finis</a></div>
       <div class="nav_item"><a href="{% url 'logout' %}">Se déconnecter</a></div> 
     </nav>
+    {% endif %}
   </div>
 
     {% block content %}{% endblock  %}
-{% else %}
+{% if not user.is_authenticated and not request.resolver_match.view_name == 'login' %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>
 {% endif %}

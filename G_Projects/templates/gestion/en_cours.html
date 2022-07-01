@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- section nouveau projet -->
-<a href="{% url 'gestion:new' %}" class="ajout_proj">Ajouter un nouveau projet</a>
+<form action="{% url 'gestion:new' %}">
+  <button class="btn  btn-my-color ajout_proj">
+    + Ajouter un nouveau projet
+  </button> 
+</form>
 
 <!-- Projets en cours -->
   <section class="projets_conteneur">
@@ -10,18 +14,23 @@
     <h3 class="titre_chef">{{chef}}</h3>
       {% for projet in projets_en_cours %}
         {% if projet.chef_projet == chef %}
+
           <!-- bloc projet -->
           <div class="bloc_projet">
-            <p>{{projet.client_principal|upper}}</p>
-            <p>{{projet.code_campagne}}</p>
+            <p class="nom_proj">{{projet|upper}}</p>
             {% include 'gestion/barre_av_mini.html' %}
-            <a href="{% url 'gestion:detail' projet.code_campagne %}">Détail du Projet</a>
-            {% if chef == user %}
-            <form class="form-inline" method="post" action="{% url 'gestion:en_cours' %}">
-              {% csrf_token %}
-              <button role='button' type="submit" name="projet_fini" value="{{projet.id}}" >Projet Fini</button> 
+            <form action="{% url 'gestion:detail' projet.code_campagne %}">
+              <button class="btn btn-size btn-my-color ajout_proj m-0 me-2 mb-2">
+                Détails
+              </button> 
             </form>
-            {% endif %}
+              <form method="post" action="{% url 'gestion:home' %}" {% if chef != user %} style='visibility:hidden;' {% endif %}>
+                {% csrf_token %}
+                <button class="btn btn-size  btn-my-color ajout_proj m-0 mb-2" type="submit" name="projet_fini" value="{{projet.id}}" >
+                  Projet Fini
+                </button> 
+              </form>
+            
           </div>  
         {% endif %} 
       {% endfor %}

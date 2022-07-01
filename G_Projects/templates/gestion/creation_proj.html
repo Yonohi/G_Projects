@@ -2,57 +2,62 @@
 {% load static %}
 {% block content %}
 
-    <section class="section_creation">
-        <div class="projet_form">
-            <form method="POST">
-                <h2>Nouveau Projet</h2>
-                {% csrf_token %}
-                {% for field in projet_form %}
-                    {% if field == projet_form.project_post %}
-                    {% else %}
-                    <div class="field_form {{field.name}}_form">{{ field.label_tag }} {{ field }}
-                        {% if field == projet_form.fournisseur %}
-                            <a href="#" class="new_fournisseur">+ Nouveau Fournisseur</a>
-                        {% elif field == projet_form.grossiste %}
-                            <a href="#" class="new_grossiste">+ Nouveau Grossiste</a>
-                        {% elif field == projet_form.partenaire %}
-                            <a href="#" class="new_partenaire">+ Nouveau Partenaire</a>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                {% endfor %}
-                <button type="submit">
-                    Sauvegarder
-                </button>
-            </form>
-        </div>     
-        <div class="new_form">
-            <form method="POST" class="form_fournisseur">
-                <h2>Nouveau Fournisseur</h2>
-                {% csrf_token %}
-                {{ four_form.as_p }}
-                <button type="submit">
-                    Sauvegarder
-                </button>
-            </form>
-            <form method="POST" class="form_grossiste">
-                <h2>Nouveau Grossiste</h2>
-                {% csrf_token %}
-                {{ gross_form.as_p }}
-                <button type="submit">
-                    Sauvegarder
-                </button>
-            </form>
-            <form method="POST" class="form_partenaire">
-                <h2>Nouveau Partenaire</h2>
-                {% csrf_token %}
-                {{ part_form.as_p }}
-                <button type="submit">
-                    Sauvegarder
-                </button>
-            </form>              
+    <section class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="projet_form">
+                    <form method="POST">
+                        <h2 class="title_creation">Nouveau Projet</h2>
+                        {% csrf_token %}
+                        {% for field in projet_form %}
+                            {% if field == projet_form.fournisseur %}
+                                <div class="field_form {{field.name}}_form"><div class="field_label">{{ field.label_tag }}</div> <div class="field_content">{{ field }}</div></div><a href="#" class="new_fournisseur">+ Nouveau Fournisseur</a>
+                            {% elif field == projet_form.grossiste %}
+                                <div class="field_form {{field.name}}_form"><div class="field_label">{{ field.label_tag }}</div> <div class="field_content">{{ field }}</div></div><a href="#" class="new_grossiste">+ Nouveau Grossiste</a>
+                            {% elif field == projet_form.partenaire %}
+                                <div class="field_form {{field.name}}_form"><div class="field_label">{{ field.label_tag }}</div> <div class="field_content">{{ field }}</div></div><a href="#" class="new_partenaire">+ Nouveau Partenaire</a>
+                            {% elif field != projet_form.project_post%}
+                                <div class="field_form {{field.name}}_form"><div class="field_label">{{ field.label_tag }}</div> <div class="field_content">{{ field }}</div></div>
+                            {% else %}
+                            <div class="field_form {{field.name}}_form" hidden>{{ field.label_tag }} {{ field }}</div>
+                            {% endif %}
+                            
+                        {% endfor %}
+                        <button type="submit" class="btn  btn-my-color">
+                            Sauvegarder
+                        </button>
+                    </form>
+                </div>  
+            </div>
+            <div class="col-4">
+                <div class="new_form">
+                    <form method="POST" class="form_fournisseur">
+                        <h2 class="title_creation">Nouveau Fournisseur</h2>
+                        {% csrf_token %}
+                        {{ four_form.as_p }}
+                        <button type="submit" class="btn  btn-my-color">
+                            Sauvegarder
+                        </button>
+                    </form>
+                    <form method="POST" class="form_grossiste">
+                        <h2 class="title_creation">Nouveau Grossiste</h2>
+                        {% csrf_token %}
+                        {{ gross_form.as_p }}
+                        <button type="submit" class="btn  btn-my-color">
+                            Sauvegarder
+                        </button>
+                    </form>
+                    <form method="POST" class="form_partenaire">
+                        <h2 class="title_creation">Nouveau Partenaire</h2>
+                        {% csrf_token %}
+                        {{ part_form.as_p }}
+                        <button type="submit" class="btn  btn-my-color">
+                            Sauvegarder
+                        </button>
+                    </form>              
+                </div>
+            </div>
         </div>
-
     </section>
 
     
