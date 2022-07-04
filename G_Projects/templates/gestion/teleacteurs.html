@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- Projets en cours -->
-  <h2 class="m-3">Téléacteurs</h2>
+  <h3 class="m-3">Téléacteurs</h3>
   <section class="tele_section">
     {% for tele in teleacteurs %}
       <div class="tele_container">
-        <h2>{{tele}}</h2> 
+        <h4>{{tele}}</h4> 
         <div class="tele_content">
-          <h3>En Cours</h3>
+          <h5>En Cours</h5>
           <div class="tele_project">
             <ul>
             {% for projet in tele.projets.all %}
@@ -18,20 +18,17 @@
             {% endfor %}
             </ul> 
           </div>
-
-          <h3>Finis</h3>
+                    <!-- Projets en cours du teleacteur -->   
+          {% comment %} <h5>Finis</h5>
           <div class="tele_project">
             <ul>
             {% for projet in tele.projets.all %}
                 {% if not projet.en_cours %}
-
-                <!-- Voir si cette partie est intéressante -->
-                    <!-- Projets en cours du teleacteur -->
                     <li>{{projet}}</li>
                 {% endif %}
             {% endfor %}
             </ul> 
-          </div>
+          </div> {% endcomment %}
         </div>       
         
       </div>

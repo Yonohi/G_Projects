@@ -4,10 +4,10 @@
 
     <section class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-7">
                 <div class="projet_form">
                     <form method="POST">
-                        <h2 class="title_creation">Nouveau Projet</h2>
+                        <h3 class="title_creation">Nouveau Projet</h3>
                         {% csrf_token %}
                         {% for field in projet_form %}
                             {% if field == projet_form.fournisseur %}
@@ -29,29 +29,29 @@
                     </form>
                 </div>  
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <div class="new_form">
                     <form method="POST" class="form_fournisseur">
-                        <h2 class="title_creation">Nouveau Fournisseur</h2>
+                        <h3 class="title_creation">Nouveau Fournisseur</h3>
                         {% csrf_token %}
                         {{ four_form.as_p }}
-                        <button type="submit" class="btn  btn-my-color">
+                        <button type="submit" class="btn  btn-my-color mt-1 mb-2">
                             Sauvegarder
                         </button>
                     </form>
                     <form method="POST" class="form_grossiste">
-                        <h2 class="title_creation">Nouveau Grossiste</h2>
+                        <h3 class="title_creation">Nouveau Grossiste</h3>
                         {% csrf_token %}
                         {{ gross_form.as_p }}
-                        <button type="submit" class="btn  btn-my-color">
+                        <button type="submit" class="btn  btn-my-color mt-1 mb-2">
                             Sauvegarder
                         </button>
                     </form>
                     <form method="POST" class="form_partenaire">
-                        <h2 class="title_creation">Nouveau Partenaire</h2>
+                        <h3 class="title_creation">Nouveau Partenaire</h3>
                         {% csrf_token %}
                         {{ part_form.as_p }}
-                        <button type="submit" class="btn  btn-my-color">
+                        <button type="submit" class="btn  btn-my-color mt-1 mb-2">
                             Sauvegarder
                         </button>
                     </form>              
@@ -60,7 +60,6 @@
         </div>
     </section>
 
-    
     {% if error %}
     <p>{{error}}</p>
     {% endif %}

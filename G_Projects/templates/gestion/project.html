@@ -4,9 +4,21 @@
 
 <!-- barre d'avancement -->
 <div class="bloc_barre_av large">
-    <figure class="barre_av large"><figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})"></figure></figure>
+    <figure {% if projet.has_objectif %} class='barre_av large' {% else %} class='barre_av large no_objectif' {% endif %}>
+        {% if projet.nb_jour_realise > 0 %}
+            <figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})">
+                {% widthratio projet.nb_jour_realise 1 100 as pourcent %}{% widthratio pourcent projet.nb_jour_total 1 %} %
+            </figure>
+        {% endif %}
+    </figure>
     {% if projet.has_objectif %}            
-        <figure class="barre_av large objectif"><figure class="barre_in" style="width: calc({{projet.opportunite.lead}}* 100% / {{projet.objectif}})"></figure></figure>
+        <figure class="barre_av large objectif">
+            {% if projet.opportunite.lead > 0 %}
+            <figure class="barre_in" style="width: calc({{projet.opportunite.lead}}* 100% / {{projet.objectif}})">
+                {% widthratio projet.opportunite.lead 1 100 as pourcent %}{% widthratio pourcent projet.objectif 1 %} %
+            </figure>
+            {% endif %}
+        </figure>
     {% endif %}
 </div>
 <div>

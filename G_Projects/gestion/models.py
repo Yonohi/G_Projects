@@ -45,7 +45,7 @@ class Project(models.Model):
     code_campagne = models.CharField(max_length=50)
     code_kammi = models.CharField(max_length=50)
     nb_jour_total = models.IntegerField(validators=[MinValueValidator(0)])
-    nb_jour_realise = models.IntegerField(validators=[MinValueValidator(0)])
+    nb_jour_realise = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     prix = models.FloatField(validators=[MinValueValidator(0)])
     date_debut = models.DateField(blank=True, null=True)
     date_fin_prevue = models.DateField(blank=True, null=True)

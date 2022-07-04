@@ -1,0 +1,22 @@
+<div class="bloc_barre_av">
+    <figure {% if projet.has_objectif %} class='barre_av' {% else %} class='barre_av no_objectif' {% endif %} >
+        {% if projet.nb_jour_realise > 0 %}
+        <figure class="barre_in" style="width: calc({{projet.nb_jour_realise}}* 100% / {{projet.nb_jour_total}})">
+        </figure>
+        {% endif %}
+    </figure>
+    {% if projet.has_objectif %}            
+        <figure class="barre_av objectif">
+            {% if projet.opportunite.lead > 0 %}
+            <figure class="barre_in" style="width: calc({{projet.opportunite.lead}}* 100% / {{projet.objectif}})">
+            </figure>
+            {% endif %}
+        </figure>
+    {% endif %}
+</div>
+<div>
+    <p class="ratio">{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
+    {% if projet.has_objectif %}            
+    <p class="ratio">{{projet.opportunite.lead}}/{{projet.objectif}}</p>
+    {% endif %}
+</div>

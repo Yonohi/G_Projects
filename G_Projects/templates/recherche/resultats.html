@@ -1,23 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}    
 <div class="container-fluid">
     <div class="row justify-content-center">
         <form method="POST" class="search_form col-6" action="{% url 'recherche:home_recherche' %}">
             {% csrf_token %}
-            <div class="field_form  align-items-center m-0">
-                <label for="site-search">Recherche</label>
-                <input class="form-control ms-3 me-3 search_input" type="search" id="site-search" name="search_input" placeholder="&#xF002; _" style="font-family:Arial, FontAwesome">
-
-                    <button type="submit" class="btn  btn-my-color ajout_proj m-0">
-                        Rechercher
-                    </button>  
-
-            </div>
-            <div class="form-text help_search">
-                Seul les noms d'entreprises sont valides
-            </div>
+            {% include 'assets/search_bar.html' %}
         </form>
     </div>
     <h2>Résultats pour: {{query}}</h2>
+    {% for projet in resultats_prio %}
+        {% include 'assets/bloc_projet.html' %}
+    {% endfor %}
+    <p></p>
+    {% if resultats_reste %}
+        <a class='link_results' href="#">Afficher plus de résultats</a>
+        <div class="reste" style="display:none">
+        {% for projet in resultats_reste %}
+            {% include 'assets/bloc_projet.html' %}
+        {% endfor %}
+        </div>
+
+    {% endif %}
   </div> 
+  <script src="{% static 'js/script_resultats.js' %}"></script>
 {% endblock  %}

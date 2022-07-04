@@ -4,18 +4,7 @@
     <div class="row justify-content-center align-items-center body_height">
         <form method="POST" class="search_form col-6" action="{% url 'recherche:home_recherche' %}">
             {% csrf_token %}
-            <div class="field_form  align-items-center m-0">
-                <label for="site-search">Recherche</label>
-                <input class="form-control ms-3 me-3 search_input" type="search" id="site-search" name="search_input" placeholder="&#xF002; _" style="font-family:Arial, FontAwesome">
-
-                    <button type="submit" class="btn  btn-my-color ajout_proj m-0">
-                        Rechercher
-                    </button>  
-
-            </div>
-            <div class="form-text help_search">
-                Seul les noms d'entreprises sont valides
-            </div>
+            {% include 'assets/search_bar.html' %}
         </form>
     </div>
   </div> 
