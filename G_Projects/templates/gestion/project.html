@@ -21,25 +21,28 @@
         </figure>
     {% endif %}
 </div>
-<div>
-    <p>{{projet.nb_jour_realise}}/{{projet.nb_jour_total}}</p>
-    {% if projet.has_objectif %}            
-    <p>{{projet.opportunite.lead}}/{{projet.objectif}}</p>
-    {% endif %}
-</div>
 
 <!-- Corps -->
-{% if  project.en_cours%}
-<h2>Projet En Cours</h2>
+{% if  projet.en_cours%}
+<h2 class="title_en_cours">Projet En Cours</h2>
 {% else %}
-<h2>Projet Fini</h2>
+<h2 class="title_fini">Projet Fini</h2>
 {% endif %}
 
-<section class="corps_projet">
+  <section class="corps_projet">
     <!-- Bloc To Do -->
     <div class="bloc_to_do">
-    <h2>To Do List</h2> 
-    <p>Proposition : {{to_do.proposition}} 
+        <div class="title_and_icon">
+            <h2>To Do List</h2> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+            </svg>  
+        </div>
+    
+    <div class="info">
+        <p>Proposition : {{to_do.proposition}} 
         <br>Commande : {{to_do.commande}}
         <br>Brief de démarrage : {{to_do.brief_demarrage}}
         <br>Compte-rendu du brief : {{to_do.cr_brief}}
@@ -52,11 +55,19 @@
         <br>Commentaires: {{to_do.commentaire}}
         </p>
     </div>
+    
+    </div>
 
     <!-- Bloc info -->
     <div class="bloc_info">
-        <h2>Informations</h2>
-        <p>Chef de projet : {{projet.chef_projet}} 
+        <div class="title_and_icon">
+            <h2>Informations</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+        </div>
+        <div class="info">
+            <p>Chef de projet : {{projet.chef_projet}} 
             {% if projet.client_principal == 'F' %}
             <br>Client Principal : {{projet.fournisseur}}
             {% elif projet.client_principal == 'G' %}
@@ -85,18 +96,28 @@
                 <li>Pas de téléacteurs pour le moment sur le projet</li>
             {% endfor %}
             </ul>
-        </p>    
+            </p> 
+        </div>
     </div>
 
 
     <!-- Bloc Résultats -->
     <div class="bloc_resultats">
-        <h2>Résultats</h2> 
-        <p>LEADS : {{projet.opportunite.lead}}
-        <br>NURSERING : {{projet.opportunite.nursering}}
-        <br>FICHES INFO : {{projet.opportunite.fiche_info}}
-        <br>Commentaires : {{projet.opportunite.commentaire}}
-        </p>
+        <div class="title_and_icon">
+            <h2>Résultats</h2> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+            </svg>
+        </div>
+        <div class="info">
+            <p>LEADS : {{projet.opportunite.lead}}
+            <br>NURSERING : {{projet.opportunite.nursering}}
+            <br>FICHES INFO : {{projet.opportunite.fiche_info}}
+            <br>Commentaires : {{projet.opportunite.commentaire}}
+            </p>
+        </div>
+
     </div>
 </section>
 

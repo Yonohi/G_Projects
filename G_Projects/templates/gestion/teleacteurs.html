@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- Projets en cours -->
-  <h3 class="m-3">Téléacteurs</h3>
-  <section class="tele_section">
+  <!-- Projets en cours -->
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    {% for tele in teleacteurs %}
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-heading-{{tele.nom}}-{{tele.prenom}}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{tele.nom}}-{{tele.prenom}}" aria-expanded="false" aria-controls="flush-collapse-{{tele.nom}}-{{tele.prenom}}">
+          {{tele}}
+        </button>
+      </h2>
+      <div id="flush-collapse-{{tele.nom}}-{{tele.prenom}}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{tele.nom}}-{{tele.prenom}}" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+        {% for projet in tele.projets.all %}
+          {% if projet.en_cours %}
+              <!-- Projets en cours du teleacteur -->
+              {% include 'assets/bloc_projet.html' %}
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %} 
+
+
+  {% comment %} <h3 class="m-3">Téléacteurs</h3>
+  <section class="tele_section">  
     {% for tele in teleacteurs %}
       <div class="tele_container">
         <h4>{{tele}}</h4> 
@@ -17,7 +41,7 @@
                 {% endif %}
             {% endfor %}
             </ul> 
-          </div>
+          </div> {% endcomment %}
                     <!-- Projets en cours du teleacteur -->   
           {% comment %} <h5>Finis</h5>
           <div class="tele_project">
@@ -29,9 +53,8 @@
             {% endfor %}
             </ul> 
           </div> {% endcomment %}
-        </div>       
+        {% comment %} </div>       
         
       </div>
    {% endfor %}
-  </section>
-{% endblock %}
+  </section>{% endcomment %}
